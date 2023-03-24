@@ -1,5 +1,56 @@
 This repository is based off [OpenMage/Magento-LTS](https://github.com/OpenMage/magento-lts). 
 
+# Installation
+
+1. You must have git, composer 2, docker, and docker-compose installed
+
+2. Clone this repository to your machine
+
+3. Run `composer install`
+
+4. Run `docker-compose up -d`. Make sure that port 80 (http), 443 (https), 3306 (mysql), 1080, and 8080 are open.
+
+5. Update your hosts file and add whatever host you want. You can skip this step and stick to `localhost`, but it's a good idea to use a different virtual host name per project.
+    
+    In this case, we'll use `magento-lts.local`.
+    > Hosts file is located at `/etc/hosts` in Linux OS 
+    while it's located at `C:/Windows/system32/drivers/etc/hosts` in Windows OS
+    
+    Add this line to your hosts file:
+    ```
+    127.0.0.1       magento-lts.local
+    ```
+
+6. Run the wizard by visiting `magento-lts.local` in your browser, or run the install script.
+
+    **Linux OS (docker-based installation)**
+    ```bash
+    docker-compose exec -u application php php -f install.php -- --license_agreement_accepted yes \
+      --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
+      --db_host db --db_name magento --db_user magento --db_pass magento \
+      --url "http://magento-lts.local/" --use_rewrites yes \
+      --use_secure yes --secure_base_url "https://magento-lts.local/" --use_secure_admin yes \
+      --admin_lastname Owner --admin_firstname Store --admin_email "admin@example.com" \
+      --admin_username admin --admin_password 123123password
+    ```
+
+    **Windows OS (wamp-based installation)**
+    ```bash
+    php -f install.php -- --license_agreement_accepted yes \
+      --locale en_US --timezone "America/Los_Angeles" --default_currency USD \
+      --db_host db --db_name magento --db_user magento --db_pass magento \
+      --url "http://magento-lts.local/" --use_rewrites yes \
+      --use_secure yes --secure_base_url "https://magento-lts.local/" --use_secure_admin yes \
+      --admin_lastname Owner --admin_firstname Store --admin_email "admin@example.com" \
+      --admin_username admin --admin_password 123123password
+    ```
+    
+    This creates ad admin user `admin` with a password of `123123password` (14 alphanumeric characters required for password, so deal with it). 
+    
+    Change the script if you want to use a different **username, password, or if you used a different host name**. 
+    
+    Check out the file in `pub/install.php` if you want to know the possible options and how to customize this.
+    
 ## Setting up your local development machine (Linux OS) 
 
 ### How to install Docker & Docker Compose
