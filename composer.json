@@ -1,0 +1,25 @@
+{
+    "name": "vernard/openmage",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vernard Alexis Luz",
+            "email": "vernard@luzcommerce.com"
+        }
+    ],
+    "require": {
+        "aydin-hassan/magento-core-composer-installer": "~2.0.0",
+        "openmage/magento-lts": "^19.4.0"
+    },
+    "extra": {
+        "magento-core-package-type": "magento-source",
+        "magento-root-dir": "pub"
+    },
+    "config": {
+        "allow-plugins": {
+            "aydin-hassan/magento-core-composer-installer": true,
+            "magento-hackathon/magento-composer-installer": true
+        }
+    }
+}

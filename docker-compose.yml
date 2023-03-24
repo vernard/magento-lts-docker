@@ -1,0 +1,62 @@
+# Uses webdevops/php-apache-dev image
+# To learn more about how to customize it, visit https://dockerfile.readthedocs.io/en/latest/content/DockerImages/dockerfiles/php-apache-dev.html
+# Modified it through `Dockerfile` just to install Mailhog sendmail
+
+version: "3"
+
+services:
+  php:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ~/.composer:/home/application/.composer:cached
+      - ~/.ssh/id_rsa:/home/application/.ssh/id_rsa:cached
+      - ~/.ssh/known_hosts:/home/application/.ssh/known_hosts:cached
+      - ./pub:/app:consistent
+    extra_hosts: &appextrahosts
+      - "host.docker.internal:host-gateway"
+    environment:
+      - PHP_DISPLAY_ERRORS=1
+      - XDEBUG_MODE=debug
+      - XDEBUG_IDE_KEY=PHPSTORM
+      - XDEBUG_REMOTE_HOST=host.docker.internal
+      - XDEBUG_REMOTE_PORT=9003
+      - php.smtp_port=1025
+      - PHP_SENDMAIL_PATH="/usr/local/bin/mhsendmail --smtp-addr=mailhog:1025 --from=no-reply@docker.dev"
+
+  db:
+    hostname: db
+    image: mariadb:10.4
+    command: --max_allowed_packet=64M
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_ROOT_PASSWORD=magento
+      - MYSQL_DATABASE=magento
+      - MYSQL_USER=magento
+      - MYSQL_PASSWORD=magento
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 1025:1025
+      - 1080:8025
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=magento
+      - PMA_PASSWORD=magento
+
+volumes:
+  dbdata:
