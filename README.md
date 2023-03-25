@@ -2,7 +2,10 @@ This repository is based off [OpenMage/Magento-LTS](https://github.com/OpenMage/
 
 # Installation
 
-1. You must have git, composer 2, docker, and docker-compose installed
+1. You must have these installed. I've documented the installation instructions at the bottom of this document.
+    - [git](#how-to-install-git), 
+    - [composer 2](#how-to-install-php-and-composer-2), 
+    - [docker, and docker-compose](#how-to-docker-and-docker-compose)
 
 2. Clone this repository to your machine
 
@@ -53,6 +56,7 @@ This repository is based off [OpenMage/Magento-LTS](https://github.com/OpenMage/
     
 ## Setting up your local development machine (Linux OS) 
 
+<a name="how-to-docker-and-docker-compose"></a>
 ### How to install Docker & Docker Compose
 You must have [docker](https://docker.com/) and [docker-compose](https://docs.docker.com/compose/install/) command installed to use this repository.
 
@@ -107,3 +111,51 @@ Follow the Docker installation instructions here: https://docs.docker.com/engine
     [Install]
     WantedBy=sockets.target
     ```
+
+6. Add the group `docker` to the current user.
+```bash
+### This creates the group if it doesn't exist yet
+sudo groupadd docker    
+
+### This attaches current user to `docker` group
+sudo usermod -aG docker $USER
+
+### Reload user to reflect new group
+su - $USER
+
+### Double check that `docker` is in your current group
+groups
+```
+
+
+<a name="how-to-install-git"></a>
+### How to install Git
+```bash
+sudo apt-get update
+sudo apt-get install git
+
+git --version # Verify that it's installed
+
+# Replace with your actual name and email
+git config --global user.name "Your Name"
+git config --global user.email "youremail@example.com"
+```
+
+<a name="how-to-install-php-and-composer-2"></a>
+### How to install PHP and Composer 2 
+
+```bash
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install php
+
+### Remove apache2 in case it got installed with PHP
+sudo apt remove apache2
+
+### Install Composer 2
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+sudo chmod +x composer.phar
+sudo mv composer.phar /usr/local/bin/composer
+```
