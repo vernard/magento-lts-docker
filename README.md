@@ -2,6 +2,8 @@ This repository is based off [OpenMage/Magento-LTS](https://github.com/OpenMage/
 
 # Installation
 
+> I did a screen recording while installing this repository on a [Linux](https://www.loom.com/share/33d53f2140574e5a95e70d14e72562b0) and [Windows](https://www.loom.com/share/7329342460314171b8a1f15ea99048c5) OS. If you prefer watching videos than reading, you may want to watch these videos instead.
+
 1. You must have these installed. I've documented the installation instructions at the bottom of this document.
     - [git](#how-to-install-git), 
     - [composer 2](#how-to-install-php-and-composer-2), 
