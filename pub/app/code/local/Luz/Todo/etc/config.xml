@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Luz_Todo>
+            <version>0.1</version>
+        </Luz_Todo>
+    </modules>
+</config>

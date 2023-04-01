@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Luz_Todo>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Luz_Todo>
+    </modules>
+</config>
