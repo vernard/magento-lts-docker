@@ -5,4 +5,16 @@
             <version>0.1</version>
         </Luz_Todo>
     </modules>
+
+    <frontend>
+        <routers>
+            <luz_todo>
+                <use>standard</use>
+                <args>
+                    <module>Luz_Todo</module>
+                    <frontName>todo</frontName>
+                </args>
+            </luz_todo>
+        </routers>
+    </frontend>
 </config>
