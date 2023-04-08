@@ -27,6 +27,22 @@
     </frontend>
 
     <global>
+        <models>
+            <luz_todo>
+                <class>Luz_Todo_Model</class>
+                <resourceModel>luz_todo_resource</resourceModel>
+            </luz_todo>
+
+            <luz_todo_resource>
+                <class>Luz_Todo_Model_Resource</class>
+                <entities>
+                    <task>
+                        <table>luz_todo_task</table>
+                    </task>
+                </entities>
+            </luz_todo_resource>
+        </models>
+
         <resources>
             <luz_todo_setup>
                 <setup>
