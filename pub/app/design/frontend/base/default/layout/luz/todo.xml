@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout>
+    <luz_todo_index_index>
+        <reference name="head">
+            <action method="setTitle"><title>Todo Application</title></action>
+        </reference>
+
+        <reference name="content">
+            <block type="core/template" name="luz_todo.hello_world" template="luz_todo/helloworld.phtml" />
+        </reference>
+    </luz_todo_index_index>
+</layout>

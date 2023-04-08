@@ -16,5 +16,13 @@
                 </args>
             </luz_todo>
         </routers>
+
+        <layout>
+            <updates>
+                <luz_todo>
+                    <file>luz/todo.xml</file>
+                </luz_todo>
+            </updates>
+        </layout>
     </frontend>
 </config>
